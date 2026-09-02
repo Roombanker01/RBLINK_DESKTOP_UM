@@ -26,7 +26,7 @@ jobs:
       - run: pnpm repo:check
       - run: pnpm docs:check
       - run: pnpm docs:build
-        env: { DOCS_BASE: /ROOMBANKER-PC/ }
+        env: { DOCS_BASE: /RBLINK_DESKTOP_UM/ }
       - run: pnpm docs:smoke
         env: { MANUAL_DOCS_BUILT: '1' }
       - uses: actions/configure-pages@v5

@@ -51,12 +51,19 @@ function hubItem(locale: string) {
 }
 
 function hubSidebarItem(page: import('@playwright/test').Page, locale: string) {
-  return page.locator(`.VPSidebarItem:has(> .item > a[href="/ROOMBANKER-PC/${locale}/guide/hubs-list-and-add"])`);
+  return page.locator(`.VPSidebarItem:has(> .item > a[href="/RBLINK_DESKTOP_UM/${locale}/guide/hubs-list-and-add"])`);
 }
 
 function sidebarLinkItem(parent: ReturnType<typeof hubSidebarItem>, href: string) {
   return parent.locator(`a[href="${href}"]`).locator('xpath=../..');
 }
+
+test('deployment configuration uses the RBLINK_DESKTOP_UM Pages path and repository', () => {
+  expect(siteConfig.base).toBe('/RBLINK_DESKTOP_UM/');
+  expect(siteConfig.themeConfig?.socialLinks).toEqual([
+    { icon: 'github', link: 'https://github.com/Roombanker01/RBLINK_DESKTOP_UM' }
+  ]);
+});
 
 test('Hub guide pages are grouped below a collapsed linked parent in both locales', () => {
   for (const item of hubSidebarCases) {
@@ -80,7 +87,7 @@ test('Hub guide pages are grouped below a collapsed linked parent in both locale
 
 test('desktop Hub tree stays collapsed until opened and expands for active Hub pages', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/ROOMBANKER-PC/en/guide/settings', { waitUntil: 'domcontentloaded' });
+  await page.goto('/RBLINK_DESKTOP_UM/en/guide/settings', { waitUntil: 'domcontentloaded' });
 
   const parent = hubSidebarItem(page, 'en');
   const details = parent.getByRole('link', { name: 'Hub details', exact: true });
@@ -95,11 +102,11 @@ test('desktop Hub tree stays collapsed until opened and expands for active Hub p
   await expect(parent).toHaveClass(/collapsed/);
 
   for (const slug of ['hubs-list-and-add', 'hub-detail', 'hub-remote-config', 'hub-subdevices']) {
-    await page.goto(`/ROOMBANKER-PC/en/guide/${slug}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`/RBLINK_DESKTOP_UM/en/guide/${slug}`, { waitUntil: 'domcontentloaded' });
     await expect(parent).not.toHaveClass(/collapsed/);
     const activeItem = slug === 'hubs-list-and-add'
       ? parent
-      : sidebarLinkItem(parent, `/ROOMBANKER-PC/en/guide/${slug}`);
+      : sidebarLinkItem(parent, `/RBLINK_DESKTOP_UM/en/guide/${slug}`);
     await expect(activeItem).toHaveClass(/is-active/);
   }
 });
@@ -112,7 +119,7 @@ test('mobile Hub trees reveal the active child and parent navigation closes the 
     { locale: 'zh', slug: 'hub-subdevices', parent: 'Hub 与注册', child: '子设备' },
     { locale: 'tr', slug: 'hub-subdevices', parent: 'Hub’lar ve kayıt', child: 'Alt cihazlar' }
   ]) {
-    await page.goto(`/ROOMBANKER-PC/${item.locale}/guide/${item.slug}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`/RBLINK_DESKTOP_UM/${item.locale}/guide/${item.slug}`, { waitUntil: 'domcontentloaded' });
     await page.locator('.VPLocalNav .menu').click();
 
     const sidebar = page.locator('.VPSidebar');
@@ -120,11 +127,11 @@ test('mobile Hub trees reveal the active child and parent navigation closes the 
     await expect(sidebar).toHaveClass(/open/);
     await expect(parent).not.toHaveClass(/collapsed/);
     await expect(parent.getByRole('link', { name: item.child, exact: true })).toBeVisible();
-    await expect(sidebarLinkItem(parent, `/ROOMBANKER-PC/${item.locale}/guide/${item.slug}`)).toHaveClass(/is-active/);
+    await expect(sidebarLinkItem(parent, `/RBLINK_DESKTOP_UM/${item.locale}/guide/${item.slug}`)).toHaveClass(/is-active/);
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
 
     await parent.getByRole('link', { name: item.parent, exact: true }).click();
-    await expect(page).toHaveURL(new RegExp(`/ROOMBANKER-PC/${item.locale}/guide/hubs-list-and-add/?$`));
+    await expect(page).toHaveURL(new RegExp(`/RBLINK_DESKTOP_UM/${item.locale}/guide/hubs-list-and-add/?$`));
     await expect(sidebar).not.toHaveClass(/open/);
   }
 });
@@ -140,9 +147,9 @@ test('published bilingual manual has no broken pages, assets, or base links', as
   page.on('pageerror', (error) => pageErrors.push(error.message));
 
   for (const route of routes) {
-    const response = await request.get(`/ROOMBANKER-PC${route}`);
+    const response = await request.get(`/RBLINK_DESKTOP_UM${route}`);
     expect(response.status(), route).toBeLessThan(400);
-    await page.goto(`/ROOMBANKER-PC${route}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`/RBLINK_DESKTOP_UM${route}`, { waitUntil: 'domcontentloaded' });
     await expect(page.locator(route === '/' ? '.VPHero' : 'main')).toBeVisible({ timeout: 10_000 });
     const documentImages = page.locator('img[src]');
     await expect.poll(async () => documentImages.evaluateAll((nodes) => nodes.every((image) => image.complete && image.naturalWidth > 0)), {
@@ -162,7 +169,7 @@ test('published bilingual manual has no broken pages, assets, or base links', as
       .map((link) => link.getAttribute('href') || '')
       .filter((href) => href.startsWith('/')));
     for (const href of internalLinks) {
-      expect(href, `${route}: ${href}`).toMatch(/^\/ROOMBANKER-PC\//);
+      expect(href, `${route}: ${href}`).toMatch(/^\/RBLINK_DESKTOP_UM\//);
       expect(href, `${route}: malformed locale link`).not.toMatch(/\/(?:zh\/en|en\/zh)(?:\/|$)/);
       discoveredInternalLinks.add(href);
     }
@@ -181,7 +188,7 @@ test('manual pages fit a 375px reading viewport', async ({ page }) => {
   test.setTimeout(120_000);
   await page.setViewportSize({ width: 375, height: 812 });
   for (const route of mobileRoutes) {
-    await page.goto(`/ROOMBANKER-PC${route}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`/RBLINK_DESKTOP_UM${route}`, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('main')).toBeVisible({ timeout: 10_000 });
     const dimensions = await page.evaluate(() => ({
       width: document.documentElement.clientWidth,
@@ -202,7 +209,7 @@ test('original manual screenshots open and close in the viewer with click and ke
 
   await page.setViewportSize({ width: 375, height: 812 });
   for (const [locale, chapter, image, method] of cases) {
-    await page.goto(`/ROOMBANKER-PC/${locale}/${chapter}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`/RBLINK_DESKTOP_UM/${locale}/${chapter}`, { waitUntil: 'domcontentloaded' });
     const originalShot = page.locator(`img.manual-shot[src$="${image}"]`);
     await expect(originalShot).toBeVisible();
     if (method === 'click') {
@@ -230,15 +237,15 @@ for (const viewport of [
 ]) {
   test(`manual home shows language actions in the ${viewport.name} viewport`, async ({ page }) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
-    await page.goto('/ROOMBANKER-PC/', { waitUntil: 'domcontentloaded' });
+    await page.goto('/RBLINK_DESKTOP_UM/', { waitUntil: 'domcontentloaded' });
 
     const actions = page.locator('.VPHero .actions');
     await expect(actions).toBeVisible();
 
     for (const [name, href] of [
-      ['English', '/ROOMBANKER-PC/en/'],
-      ['简体中文', '/ROOMBANKER-PC/zh/'],
-      ['Türkçe', '/ROOMBANKER-PC/tr/']
+      ['English', '/RBLINK_DESKTOP_UM/en/'],
+      ['简体中文', '/RBLINK_DESKTOP_UM/zh/'],
+      ['Türkçe', '/RBLINK_DESKTOP_UM/tr/']
     ]) {
       const link = actions.getByRole('link', { name, exact: true });
       await expect(link).toBeVisible();
@@ -279,7 +286,7 @@ test('remote-config confirmation tables retain four outcome columns', async ({ p
   ];
 
   for (const item of pages) {
-    await page.goto(`/ROOMBANKER-PC${item.route}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`/RBLINK_DESKTOP_UM${item.route}`, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('main')).toBeVisible({ timeout: 10_000 });
     const transferTable = page.locator(`img[alt^="${item.transferAlt}"]`).locator('xpath=following::table[1]');
     const restartTable = page.locator(`img[alt^="${item.restartAlt}"]`).locator('xpath=following::table[1]');
@@ -303,7 +310,7 @@ test('operation-log tables name the keyword and date-range controls in both lang
     { locale: 'zh', keyword: '关键词', dateRange: '日期范围' },
     { locale: 'tr', keyword: 'Anahtar sözcük', dateRange: 'Tarih aralığı' }
   ]) {
-    await page.goto(`/ROOMBANKER-PC/${item.locale}/guide/operation-logs`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`/RBLINK_DESKTOP_UM/${item.locale}/guide/operation-logs`, { waitUntil: 'domcontentloaded' });
     const table = page.locator('img[src$="/images/pages/operation-logs.png"]').locator('xpath=following::table[1]');
     await expect(table.locator('tbody tr').nth(1).locator('td').nth(1)).toHaveText(item.keyword);
     await expect(table.locator('tbody tr').nth(2).locator('td').nth(1)).toHaveText(item.dateRange);

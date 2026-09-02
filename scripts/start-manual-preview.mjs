@@ -3,7 +3,7 @@ import { spawn, spawnSync } from 'node:child_process';
 const command = process.platform === 'win32' ? 'corepack.cmd' : 'corepack';
 if (process.env.MANUAL_DOCS_BUILT !== '1') {
   const build = spawnSync(command, ['pnpm', 'docs:build'], {
-    env: { ...process.env, DOCS_BASE: '/ROOMBANKER-PC/' },
+    env: { ...process.env, DOCS_BASE: '/RBLINK_DESKTOP_UM/' },
     stdio: 'inherit'
   });
   if (build.status !== 0) process.exit(build.status || 1);

@@ -51,7 +51,7 @@ function sidebar(prefix: string, locale: keyof typeof labels) {
 }
 
 export default defineConfig({
-  base: process.env.DOCS_BASE || '/ROOMBANKER-PC/',
+  base: process.env.DOCS_BASE || '/RBLINK_DESKTOP_UM/',
   title: 'RBLINK DESKTOP',
   description: 'Wireless Security Management Platform manual',
   cleanUrls: true,
@@ -60,5 +60,5 @@ export default defineConfig({
     zh: { label: '简体中文', lang: 'zh-CN', themeConfig: { nav: [{ text: '中文', link: '/zh/' }, { text: 'English', link: '/en/' }, { text: 'Türkçe', link: '/tr/' }], sidebar: sidebar('/zh', 'zh') } },
     tr: { label: 'Türkçe', lang: 'tr-TR', themeConfig: { nav: [{ text: 'Türkçe', link: '/tr/' }, { text: 'English', link: '/en/' }, { text: '中文', link: '/zh/' }], sidebar: sidebar('/tr', 'tr') } }
   },
-  themeConfig: { logo: '/images/brand/roombanker-mark.svg', socialLinks: [{ icon: 'github', link: 'https://github.com/hedajun1988/ROOMBANKER-PC' }] }
+  themeConfig: { logo: '/images/brand/roombanker-mark.svg', socialLinks: [{ icon: 'github', link: 'https://github.com/Roombanker01/RBLINK_DESKTOP_UM' }] }
 });

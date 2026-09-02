@@ -6,12 +6,12 @@ export default defineConfig({
   workers: 1,
   reporter: [['list']],
   use: {
-    baseURL: 'http://localhost:5191/ROOMBANKER-PC/',
+    baseURL: 'http://localhost:5191/RBLINK_DESKTOP_UM/',
     viewport: { width: 1440, height: 900 }
   },
   webServer: {
     command: 'node scripts/start-manual-preview.mjs',
-    url: 'http://localhost:5191/ROOMBANKER-PC/en/',
+    url: 'http://localhost:5191/RBLINK_DESKTOP_UM/en/',
     reuseExistingServer: false,
     timeout: 120000
   },
