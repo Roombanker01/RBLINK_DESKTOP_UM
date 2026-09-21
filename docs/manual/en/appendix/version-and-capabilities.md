@@ -1,6 +1,6 @@
 # Version and capabilities
 
-This manual applies to RBLINK DESKTOP v1.0.0 and was updated on 2026-08-31.
+This manual applies to **RBLINK DESKTOP v0.1.3** and was updated on 2026-09-21. The manual revision and application version are separate: this page identifies the application version, while the manual can receive independent wording or screenshot updates.
 
 Times are shown in the current computer's local time zone.
 

@@ -1,19 +1,24 @@
 # Hub’lar ve kayıt
 
-![Hub liste işlemleri: 1 durum, 2 mod, 3 şirket, 4 SN, 5 Hub ekle, 6 cihazlar, 7 kur/devre dışı bırak, 8 ayrıntılar, 9 ata, 10 sil](/images/hubs/hub-list-actions.png){.manual-shot}
+Standart koruma denetimlerinin sırası **Arm Stay**, **Arm Away**, ardından **Disarm** şeklindedir. Bunlar yüksek etkili işlemlerdir: hedef Hub'ı doğrulayın ve yenilenen durumu onay kabul edin.
+
+![Hub liste işlemleri: 1 Hub Listesi, 2 durum, 3 mod, 4 şirket, 5 SN, 6 Hub ekle, 7 alt cihazlar, 8 Arm Stay, 9 Arm Away, 10 Disarm, 11 ayrıntılar, 12 ata, 13 sil](/images/hubs/hub-list-actions.png){.manual-shot}
 
 | No. | Denetim | Kullanım ve sonuç |
 |---|---|---|
-| 1 | Durum filtresi | Listeyi Hub durumuna göre sınırlar. |
-| 2 | Mod filtresi | Listeyi mevcut kurulum moduna göre sınırlar. |
-| 3 | Şirket filtresi | Listeyi bir şirketle sınırlar. |
-| 4 | SN araması | Hub seri numarasına göre filtreler. |
-| 5 | Hub ekle | Kayıt sihirbazını açar. |
-| 6 | Cihaz sayısı | Hub’ın alt cihazlarını açar. |
-| 7 | Kur veya devre dışı bırak | Seçili Hub modunu değiştirir. Önce Hub’ı ve amaçlanan modu doğrulayın; hata varsa modun değiştiğini varsaymayın. |
-| 8 | Ayrıntılar | Seçili Hub ayrıntısını açar. |
-| 9 | Ata | Değiştirmeden atama penceresini açar. |
-| 10 | Sil | Silme onayını açar. |
+| 1 | Hub Listesi | Hub listesine döner. |
+| 2 | Durum filtresi | Listeyi Hub durumuna göre sınırlar. |
+| 3 | Mod filtresi | Listeyi mevcut kurulum moduna göre sınırlar. |
+| 4 | Şirket filtresi | Listeyi bir şirketle sınırlar. |
+| 5 | SN araması | Hub seri numarasına göre filtreler. |
+| 6 | Hub ekle | Kayıt sihirbazını açar. |
+| 7 | Alt cihazlar | Hub’ın alt cihazlarını açar. |
+| 8 | Arm Stay | Seçili Hub’ı Arm Stay durumuna alır. Önce Hub’ı ve amaçlanan modu doğrulayın; hata varsa modun değiştiğini varsaymayın. |
+| 9 | Arm Away | Seçili Hub’ı Arm Away durumuna alır. Önce Hub’ı ve amaçlanan modu doğrulayın; hata varsa modun değiştiğini varsaymayın. |
+| 10 | Disarm | Seçili Hub’ı devre dışı bırakır. Önce Hub’ı ve amaçlanan modu doğrulayın; hata varsa modun değiştiğini varsaymayın. |
+| 11 | Ayrıntılar | Seçili Hub ayrıntısını açar. |
+| 12 | Ata | Değiştirmeden atama penceresini açar. |
+| 13 | Sil | Silme onayını açar. |
 
 ![Hub ata: 1 şirket, 2 kişi, 3 iptal, 4 kaydet](/images/hubs/hub-assign-modal.png){.manual-shot}
 

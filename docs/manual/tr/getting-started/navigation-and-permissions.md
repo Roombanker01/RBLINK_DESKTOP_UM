@@ -4,7 +4,7 @@
 
 | No. | Denetim | Ön koşul, işlem, sonuç, izin |
 |---|---|---|
-| 1 | Dil | Görüntüleme dilini değiştirmek için seçin. Profil güncellemesi başarısızsa önceki dil kalır. |
+| 1 | Dil | Çince veya İngilizce seçildiğinde görüntüleme dili hemen değişir. Eşitleme başarısız olsa da seçili dil kalır. Türkçe yalnızca bu kılavuz içindir. |
 | 2 | Bildirim zili ve okunmamış sayısı | Yalnızca rol bildirimlere erişebiliyorsa görünür; Bildirimler sayfasını açar. |
 | 3 | Avatar | Oturum açan hesabın Ayarlarını açar. |
 | 4 | Kenar çubuğu | Yalnızca kullanabileceğiniz sayfaları gösterir. Başka bir sayfa adresi yazmak erişim vermez; erişiminiz yoksa RBLINK DESKTOP sizi kullanılabilir bir sayfaya döndürür. |

@@ -12,7 +12,7 @@ function collectLinks(items: SidebarItem[]): string[] {
 
 const locales = siteConfig.locales as Record<string, { themeConfig: { sidebar: SidebarItem[] } }>;
 const sidebarLinks = Object.values(locales).flatMap((locale) => collectLinks(locale.themeConfig.sidebar));
-const routes = [...new Set(['/', '/en/', '/zh/', ...sidebarLinks])];
+const routes = [...new Set(['/', '/en/', '/zh/', '/tr/', ...sidebarLinks])];
 const mobileRoutes = [
   '/en/', '/zh/', '/tr/',
   '/en/guide/hubs-list-and-add', '/zh/guide/hubs-list-and-add', '/tr/guide/hubs-list-and-add',
@@ -85,6 +85,12 @@ test('Hub guide pages are grouped below a collapsed linked parent in both locale
   }
 });
 
+test('Turkish sidebar translates every guide title without English fallback', () => {
+  const titles = guideItems('tr').map((item) => item.text);
+  expect(titles).toContain('PC işlem günlüğü');
+  expect(titles).not.toContain('PC operation log');
+});
+
 test('desktop Hub tree stays collapsed until opened and expands for active Hub pages', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/RBLINK_DESKTOP_UM/en/guide/settings', { waitUntil: 'domcontentloaded' });
@@ -136,7 +142,7 @@ test('mobile Hub trees reveal the active child and parent navigation closes the 
   }
 });
 
-test('published bilingual manual has no broken pages, assets, or base links', async ({ page, request }) => {
+test('published three-language manual has no broken pages, assets, or base links', async ({ page, request }) => {
   test.setTimeout(120_000);
   const consoleErrors: string[] = [];
   const pageErrors: string[] = [];
@@ -170,7 +176,7 @@ test('published bilingual manual has no broken pages, assets, or base links', as
       .filter((href) => href.startsWith('/')));
     for (const href of internalLinks) {
       expect(href, `${route}: ${href}`).toMatch(/^\/RBLINK_DESKTOP_UM\//);
-      expect(href, `${route}: malformed locale link`).not.toMatch(/\/(?:zh\/en|en\/zh)(?:\/|$)/);
+      expect(href, `${route}: malformed locale link`).not.toMatch(/\/(?:zh\/en|en\/zh|tr\/en|en\/tr|tr\/zh|zh\/tr)(?:\/|$)/);
       discoveredInternalLinks.add(href);
     }
   }

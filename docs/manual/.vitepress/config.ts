@@ -12,9 +12,9 @@ const hubGuide = [
 ] as const;
 
 const labels = {
-  en: { start: 'Getting started', login: 'Login', registration: 'Registration', recovery: 'Password recovery', navigation: 'Navigation and permissions', guide: 'Guide', appendix: 'Appendix', roles: 'Roles and permissions', safety: 'Operation safety', capabilities: 'Version and capabilities', troubleshooting: 'Troubleshooting', titles: {} },
-  zh: { start: '开始使用', login: '登录', registration: '注册', recovery: '找回密码', navigation: '导航与权限', guide: '功能指南', appendix: '附录', roles: '角色与权限', safety: '操作安全', capabilities: '版本与功能边界', troubleshooting: '故障排查', titles: { Dashboard: '仪表盘', Companies: '公司', 'Hubs and registration': 'Hub 与注册', 'Hub details': 'Hub 详情', 'Remote configuration': '远程配置', 'Sub-devices': '子设备', 'Alarm messages': '报警消息', 'Device messages': '设备消息', 'PC operation log': 'PC 操作日志', Accounts: '账号', Permissions: '权限', 'Deactivated accounts': '已停用账号', Notifications: '通知', Announcements: '公告', Settings: '设置' } },
-  tr: { start: 'Başlangıç', login: 'Oturum açma', registration: 'Kayıt', recovery: 'Parola kurtarma', navigation: 'Gezinme ve izinler', guide: 'Kılavuz', appendix: 'Ek', roles: 'Roller ve izinler', safety: 'İşlem güvenliği', capabilities: 'Sürüm ve özellikler', troubleshooting: 'Sorun giderme', titles: { Dashboard: 'Gösterge paneli', Companies: 'Şirketler', 'Hubs and registration': 'Hub’lar ve kayıt', 'Hub details': 'Hub ayrıntıları', 'Remote configuration': 'Uzaktan yapılandırma', 'Sub-devices': 'Alt cihazlar', 'Alarm messages': 'Alarm mesajları', 'Device messages': 'Cihaz mesajları', 'PC operation log': 'PC işlem günlüğü', Accounts: 'Hesaplar', Permissions: 'İzinler', 'Deactivated accounts': 'Devre dışı bırakılmış hesaplar', Notifications: 'Bildirimler', Announcements: 'Duyurular', Settings: 'Ayarlar' } }
+  en: { start: 'Getting started', login: 'Login', registration: 'Registration', recovery: 'Password recovery', navigation: 'Navigation and permissions', guide: 'Guide', appendix: 'Appendix', roles: 'Roles and permissions', safety: 'Operation safety', capabilities: 'Version and capabilities', updates: 'What changed in this version', troubleshooting: 'Troubleshooting', titles: {} },
+  zh: { start: '开始使用', login: '登录', registration: '注册', recovery: '找回密码', navigation: '导航与权限', guide: '功能指南', appendix: '附录', roles: '角色与权限', safety: '操作安全', capabilities: '版本与功能边界', updates: '本版本更新', troubleshooting: '故障排查', titles: { Dashboard: '仪表盘', Companies: '公司', 'Hubs and registration': 'Hub 与注册', 'Hub details': 'Hub 详情', 'Remote configuration': '远程配置', 'Sub-devices': '子设备', 'Alarm messages': '报警消息', 'Device messages': '设备消息', 'PC operation log': 'PC 操作日志', Accounts: '账号', Permissions: '权限', 'Deactivated accounts': '已停用账号', Notifications: '通知', Announcements: '公告', Settings: '设置' } },
+  tr: { start: 'Başlangıç', login: 'Oturum açma', registration: 'Kayıt', recovery: 'Parola kurtarma', navigation: 'Gezinme ve izinler', guide: 'Kılavuz', appendix: 'Ek', roles: 'Roller ve izinler', safety: 'İşlem güvenliği', capabilities: 'Sürüm ve özellikler', updates: 'Bu sürümdeki yenilikler', troubleshooting: 'Sorun giderme', titles: { Dashboard: 'Gösterge paneli', Companies: 'Şirketler', 'Hubs and registration': 'Hub’lar ve kayıt', 'Hub details': 'Hub ayrıntıları', 'Remote configuration': 'Uzaktan yapılandırma', 'Sub-devices': 'Alt cihazlar', 'Alarm messages': 'Alarm mesajları', 'Device messages': 'Cihaz mesajları', 'PC operation log': 'PC işlem günlüğü', Accounts: 'Hesaplar', Permissions: 'İzinler', 'Deactivated accounts': 'Devre dışı bırakılmış hesaplar', Notifications: 'Bildirimler', Announcements: 'Duyurular', Settings: 'Ayarlar' } }
 } as const;
 
 function sidebar(prefix: string, locale: keyof typeof labels) {
@@ -45,6 +45,7 @@ function sidebar(prefix: string, locale: keyof typeof labels) {
       { text: label.roles, link: `${prefix}/appendix/roles-and-permissions` },
       { text: label.safety, link: `${prefix}/appendix/operation-safety` },
       { text: label.capabilities, link: `${prefix}/appendix/version-and-capabilities` },
+      { text: label.updates, link: `${prefix}/appendix/whats-new` },
       { text: label.troubleshooting, link: `${prefix}/appendix/troubleshooting` }
     ] }
   ];
@@ -60,5 +61,5 @@ export default defineConfig({
     zh: { label: '简体中文', lang: 'zh-CN', themeConfig: { nav: [{ text: '中文', link: '/zh/' }, { text: 'English', link: '/en/' }, { text: 'Türkçe', link: '/tr/' }], sidebar: sidebar('/zh', 'zh') } },
     tr: { label: 'Türkçe', lang: 'tr-TR', themeConfig: { nav: [{ text: 'Türkçe', link: '/tr/' }, { text: 'English', link: '/en/' }, { text: '中文', link: '/zh/' }], sidebar: sidebar('/tr', 'tr') } }
   },
-  themeConfig: { logo: '/images/brand/roombanker-mark.svg', socialLinks: [{ icon: 'github', link: 'https://github.com/Roombanker01/RBLINK_DESKTOP_UM' }] }
+  themeConfig: { logo: '/images/brand/rblink-mark.png', socialLinks: [{ icon: 'github', link: 'https://github.com/Roombanker01/RBLINK_DESKTOP_UM' }] }
 });

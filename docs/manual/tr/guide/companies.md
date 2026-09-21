@@ -2,6 +2,21 @@
 
 **Şirket işlemleri.** Oluşturma, düzenleme, ayrıntı, çalışan ve sahip aktarımı aşağıda gösterilir. Yetkili yöneticiler ilişkili Hub’ları açabilir veya şirket silebilir. Silinen şirket listede görünmez ve ilgili yönetim sürdürülemez; göndermeden önce hedefi doğrulayın.
 
+**Logo sınırı.** En fazla **200 KB** boyutunda resim seçin; daha büyük resim kabul edilmez. Yeni resim seçilemezse mevcut logo değişmez. Kullanılabilir logosu olmayan şirketlerde varsayılan avatar görünür.
+
+![Şirket logosu çok büyük uyarısı: 1 uyarı](/images/companies/company-logo-size-error.png){.manual-shot}
+
+| No. | Denetim | Sonuç |
+|---|---|---|
+| 1 | Şirket logosu | Büyük seçim temizlenir. |
+| 2 | Hata iletisi | En fazla 200 KB dosya seçin; büyük dosya kabul edilmez. |
+
+![Şirket varsayılan avatarı: 1 avatar](/images/companies/company-default-avatar.png){.manual-shot}
+
+| No. | Denetim | Sonuç |
+|---|---|---|
+| 1 | Varsayılan avatar | Logo yoksa veya yüklenemezse görünür. |
+
 ![Şirket oluşturma formu: 1 şirket adı, 2 tür, 3 logo, 4 kaydet](/images/companies/company-create.png){.manual-shot}
 
 | No. | Oluşturma denetimi | Kullanım |

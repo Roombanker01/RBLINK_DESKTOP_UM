@@ -2,6 +2,8 @@
 
 Open Notifications from the bell in the top bar.
 
+The badge displays 1-9 as the original number, 10-99 as **9+**, 100-999 as **99+**, and 1000 or more as **999+**. After **Mark All Read** finishes, the list and badge refresh together. It does not keep a progress or countdown display after completion.
+
 ![Single read: 1 Mark All Read, 2 read item, 3 unread item](/images/notifications/notification-single-read.png){.manual-shot}
 
 | No. | Control | Prerequisite and operation | Result, failure, permission, or risk |

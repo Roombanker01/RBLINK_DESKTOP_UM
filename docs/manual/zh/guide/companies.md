@@ -2,6 +2,21 @@
 
 **公司操作。** 下方已展示创建、编辑、详情、员工和 Owner 转移状态。授权管理员还可打开关联 Hub 或删除公司。删除后公司不再出现在可用列表中，相关管理操作无法继续；提交前确认目标。
 
+**Logo 限制。** 请选择不超过 **200 KB** 的图片；超限图片不会被接受。选择替换图片未成功时，原 Logo 保持不变。没有可用 Logo 的公司显示默认头像。
+
+![公司 Logo 超限提示：1 提示](/images/companies/company-logo-size-error.png){.manual-shot}
+
+| 编号 | 控件 | 结果 |
+|---|---|---|
+| 1 | 公司 Logo | 超限选择会被清空。 |
+| 2 | 错误提示 | 选择不超过 200 KB 的图片；超限图片不会被接受。 |
+
+![公司默认头像：1 头像](/images/companies/company-default-avatar.png){.manual-shot}
+
+| 编号 | 控件 | 结果 |
+|---|---|---|
+| 1 | 默认头像 | 没有 Logo 或 Logo 无法加载时显示。 |
+
 ![创建公司表单：1 公司名称，2 类型，3 Logo，4 保存](/images/companies/company-create.png){.manual-shot}
 
 | 编号 | 创建控件 | 用途 |

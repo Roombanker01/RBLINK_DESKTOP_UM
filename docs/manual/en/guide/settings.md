@@ -1,13 +1,13 @@
 # Settings
 
-Settings applies to the current signed-in account. Profile save and language selection remain available above the sections shown here; the email field is read-only.
+Settings applies to the current signed-in account. Profile save and language selection remain available above the sections shown here; the email field is read-only. Choosing Chinese or English applies immediately. If the choice cannot be synchronized, the selected language still remains in use. Turkish is a manual language only, not an application language option.
 
 ![Settings overview: 1 Save Changes, 2 Language, 3 Delete My Account](/images/settings/settings-overview.png){.manual-shot}
 
 | No. | Control | Prerequisite and operation | Result, failure, permission, or risk |
 |---|---|---|---|
 | 1 | Save Changes | Update editable profile fields, then save. | A failed request preserves the confirmed profile. |
-| 2 | Language | Select a supported display language. | The application updates the display language; a failed update keeps the prior setting. |
+| 2 | Language | Select a supported display language. | The new selection stays active locally at once; it may not yet be synchronized remotely if the update fails. |
 | 3 | Delete My Account | Open only after verifying the signed-in identity. | Opens a high-risk confirmation for the current account only. |
 
 ![Change Password: 1 current password, 2 new password, 3 confirmation, 4 hold to reveal, 5 update](/images/settings/settings-change-password.png){.manual-shot}

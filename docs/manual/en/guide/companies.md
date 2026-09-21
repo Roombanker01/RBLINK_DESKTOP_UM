@@ -2,6 +2,21 @@
 
 **Company actions.** The create, edit, detail, employee, and owner-transfer states are shown below. Authorized administrators can also open associated Hubs or delete a company. After deletion, the company no longer appears in the available list and related management cannot continue; confirm the target before submitting.
 
+**Logo limit.** Choose an image no larger than **200 KB**. A larger image is refused. If selecting a replacement image fails, the existing logo stays unchanged. A company with no usable logo shows the default avatar.
+
+![Company logo too large warning: 1 warning](/images/companies/company-logo-size-error.png){.manual-shot}
+
+| No. | Control | Result |
+|---|---|---|
+| 1 | Company Logo | The oversized selection is cleared. |
+| 2 | Error message | Select a file of 200 KB or less; the oversized file is not accepted. |
+
+![Company default avatar: 1 avatar](/images/companies/company-default-avatar.png){.manual-shot}
+
+| No. | Control | Result |
+|---|---|---|
+| 1 | Default avatar | Shown when no logo is available or the logo cannot load. |
+
 ![Create Company form: 1 company name, 2 type, 3 logo, 4 save](/images/companies/company-create.png){.manual-shot}
 
 | No. | Create control | Use |

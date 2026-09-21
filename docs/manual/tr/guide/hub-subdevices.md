@@ -2,6 +2,8 @@
 
 Seçili Hub’dan **Alt cihazlar**ı açın. Örnekler örnek cihaz ve odaları gösterir. Cihaz silmeden, düzenlemeden veya eklemeden önce hedefi doğrulayın.
 
+**IPC Camera** kamera simgesiyle gösterilir. Cihaz pil değeri bildirmezse Battery alanında `-` görünür; bu eksik bilgi demektir, şarj seviyesi değildir.
+
 ![Alt cihaz listesi: 1 tür, 2 model, 3 durum, 4 seri arama, 5 ayrıntı, 6 düzenle, 7 sil](/images/hubs/hub-subdevices-list.png){.manual-shot}
 
 | No. | Denetim | Ön koşul ve işlem | Sonuç, hata, izin veya risk |

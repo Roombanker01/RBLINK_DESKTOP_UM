@@ -2,6 +2,8 @@
 
 Üst çubuktaki zilden Bildirimler’i açın.
 
+Rozet 1-9 için asıl sayıyı, 10-99 için **9+**'ı, 100-999 için **99+**'ı, 1000 ve üzeri için **999+**'ı gösterir. **Tümünü okundu işaretle** tamamlandığında liste ve rozet birlikte yenilenir; tamamlandıktan sonra sürekli ilerleme veya geri sayım görünmez.
+
 ![Tek okuma: 1 Tümünü okundu işaretle, 2 okunan öğe, 3 okunmamış öğe](/images/notifications/notification-single-read.png){.manual-shot}
 
 | No. | Denetim | Ön koşul ve işlem | Sonuç, hata, izin veya risk |

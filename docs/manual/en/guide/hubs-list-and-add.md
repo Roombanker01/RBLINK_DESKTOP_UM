@@ -1,19 +1,24 @@
 # Hubs and registration
 
-![Hub list actions: 1 status, 2 mode, 3 company, 4 SN, 5 Add Hub, 6 devices, 7 arm/disarm, 8 details, 9 assign, 10 delete](/images/hubs/hub-list-actions.png){.manual-shot}
+The standard protection controls are ordered **Arm Stay**, **Arm Away**, then **Disarm**. They are high-impact controls: verify the Hub and use the refreshed state as confirmation.
+
+![Hub list actions: 1 Hub List, 2 status, 3 mode, 4 company, 5 SN, 6 Add Hub, 7 sub-devices, 8 Arm Stay, 9 Arm Away, 10 Disarm, 11 details, 12 assign, 13 delete](/images/hubs/hub-list-actions.png){.manual-shot}
 
 | No. | Control | Use and result |
 |---|---|---|
-| 1 | Status filter | Limits the list by Hub status. |
-| 2 | Mode filter | Limits the list by current arm mode. |
-| 3 | Company filter | Limits the list to a company. |
-| 4 | SN search | Filters by Hub serial number. |
-| 5 | Add Hub | Opens the registration wizard. |
-| 6 | Device count | Opens that Hub's sub-devices. |
-| 7 | Arm or Disarm | Changes the selected Hub mode directly. Verify the Hub and intended mode first; if the action fails, do not assume the mode changed. |
-| 8 | Details | Opens the selected Hub detail. |
-| 9 | Assign | Opens assignment without changing it. |
-| 10 | Delete | Opens deletion confirmation. |
+| 1 | Hub List | Returns to the Hub list. |
+| 2 | Status filter | Limits the list by Hub status. |
+| 3 | Mode filter | Limits the list by current arm mode. |
+| 4 | Company filter | Limits the list to a company. |
+| 5 | SN search | Filters by Hub serial number. |
+| 6 | Add Hub | Opens the registration wizard. |
+| 7 | Sub-devices | Opens that Hub's sub-devices. |
+| 8 | Arm Stay | Changes the selected Hub to Arm Stay. Verify the Hub and intended mode first; if the action fails, do not assume the mode changed. |
+| 9 | Arm Away | Changes the selected Hub to Arm Away. Verify the Hub and intended mode first; if the action fails, do not assume the mode changed. |
+| 10 | Disarm | Disarms the selected Hub. Verify the Hub and intended mode first; if the action fails, do not assume the mode changed. |
+| 11 | Details | Opens the selected Hub detail. |
+| 12 | Assign | Opens assignment without changing it. |
+| 13 | Delete | Opens deletion confirmation. |
 
 ![Assign Hub: 1 company, 2 person, 3 cancel, 4 save](/images/hubs/hub-assign-modal.png){.manual-shot}
 

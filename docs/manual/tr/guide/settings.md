@@ -1,13 +1,13 @@
 # Ayarlar
 
-Ayarlar mevcut oturum açan hesap için geçerlidir. Profil kaydetme ve dil seçimi bu bölümlerin üstünde kullanılabilir; e-posta alanı salt okunurdur.
+Ayarlar mevcut oturum açan hesap için geçerlidir. Profil kaydetme ve dil seçimi bu bölümlerin üstünde kullanılabilir; e-posta alanı salt okunurdur. Çince veya İngilizce seçimi hemen uygulanır. Seçim eşitlenemezse de seçili dil kullanılmaya devam eder. Türkçe yalnızca kılavuz dilidir, uygulama arayüzü seçeneği değildir.
 
 ![Ayarlar genel görünümü: 1 Değişiklikleri kaydet, 2 Dil, 3 Hesabımı sil](/images/settings/settings-overview.png){.manual-shot}
 
 | No. | Denetim | Ön koşul ve işlem | Sonuç, hata, izin veya risk |
 |---|---|---|---|
 | 1 | Değişiklikleri kaydet | Düzenlenebilir profil alanlarını güncelleyip kaydedin. | Başarısız istek onaylı profili korur. |
-| 2 | Dil | Desteklenen görüntüleme dili seçin. | Uygulama dili günceller; başarısız güncelleme önceki ayarı korur. |
+| 2 | Dil | Desteklenen görüntüleme dili seçin. | Yeni seçim yerelde hemen etkin kalır; güncelleme başarısızsa henüz uzaktan eşitlenmemiş olabilir. |
 | 3 | Hesabımı sil | Yalnızca oturum açan kimliği doğruladıktan sonra açın. | Yalnızca mevcut hesap için yüksek riskli onay açar. |
 
 ![Parola değiştir: 1 mevcut parola, 2 yeni parola, 3 onay, 4 gösterme, 5 güncelle](/images/settings/settings-change-password.png){.manual-shot}

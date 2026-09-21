@@ -5,7 +5,7 @@ import { transformWithEsbuild } from 'vite';
 const root = 'docs/manual';
 const publicRoot = join(root, 'public');
 const errors = [];
-const exemptAppendixImages = new Set();
+const exemptAppendixImages = new Set(['/images/brand/rblink-mark.png']);
 
 function walk(dir, extension) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((item) => {
@@ -59,14 +59,27 @@ const manifestSource = readFileSync(manifestPath, 'utf8');
 const transformedManifest = await transformWithEsbuild(manifestSource, manifestPath, { loader: 'ts', format: 'esm', target: 'esnext' });
 const { screenshotManifest } = await import(`data:text/javascript;base64,${Buffer.from(transformedManifest.code).toString('base64')}`);
 
-const operationLogsEntry = screenshotManifest.find((entry) => entry.id === 'operation-logs');
-const operationLogsControls = [
-  ['1', 'Type filter', '.content .toolbar > select.control'],
-  ['2', 'Keyword', '.content .toolbar > input.search-control'],
-  ['3', 'Date range (From/To)', '.content .toolbar > .event-date-picker:has(input[placeholder="From"])']
-];
-if (!operationLogsEntry || JSON.stringify(operationLogsEntry.controls.map((control) => [control.number, control.name, control.selector])) !== JSON.stringify(operationLogsControls)) {
-  addError('operation-logs: controls must use the required numbered selector contract');
+const requiredControlContracts = {
+  'operation-logs': [
+    ['1', 'Type filter', '.content .toolbar > select.control'],
+    ['2', 'Keyword', '.content .toolbar > input.search-control'],
+    ['3', 'Date range (From/To)', '.content .toolbar > .event-date-picker:has(input[placeholder="From"])']
+  ],
+  'hub-list-actions': [
+    ['1', 'Hub List', '.sub-tabs button:nth-of-type(1)'], ['2', 'Status filter', '.toolbar select:nth-of-type(1)'], ['3', 'Mode filter', '.toolbar select:nth-of-type(2)'], ['4', 'Company filter', '.toolbar select:nth-of-type(3)'], ['5', 'SN search', '.toolbar .search-control'], ['6', 'Add Hub', '.toolbar .btn-primary'], ['7', 'Sub-device count', '.hub-list-card tbody tr:has-text("DEMO-HUB-0001") .hub-device-count'], ['8', 'Arm Stay', '.hub-list-card tbody tr:has-text("DEMO-HUB-0001") .arm-actions .arm-icon-button:nth-of-type(1)'], ['9', 'Arm Away', '.hub-list-card tbody tr:has-text("DEMO-HUB-0001") .arm-actions .arm-icon-button:nth-of-type(2)'], ['10', 'Disarm', '.hub-list-card tbody tr:has-text("DEMO-HUB-0001") .arm-actions .arm-icon-button:nth-of-type(3)'], ['11', 'Details', '.hub-list-card tbody tr:has-text("DEMO-HUB-0001") button[title="Detail"]'], ['12', 'Assign', '.hub-list-card tbody tr:has-text("DEMO-HUB-0001") button[title="Assign"]'], ['13', 'Delete', '.hub-list-card tbody tr:has-text("DEMO-HUB-0001") button[title="Delete"]']
+  ],
+  'hub-detail-main': [
+    ['1', 'Hub List', '.sub-tabs button:nth-of-type(1)'], ['2', 'Hub Detail', '.sub-tabs button:nth-of-type(2)'], ['3', 'Remote Config', '.sub-tabs button:nth-of-type(3)'], ['4', 'Sub-devices', '.sub-tabs button:nth-of-type(4)'], ['5', 'Add Sub-device', '.sub-tabs button:nth-of-type(5)'], ['6', 'Edit', '.detail-card .card-header .btn:text-is("Edit")'], ['7', 'Disarm', '.arm-btn-row .btn:text-is("Disarmed")'], ['8', 'Arm Stay', '.arm-btn-row .btn:text-is("Arm Stay")'], ['9', 'Arm Away', '.arm-btn-row .btn:text-is("Arm Away")'], ['10', 'Perimeter', '.arm-custom-button:nth-of-type(1)'], ['11', 'Night Watch', '.arm-custom-button:nth-of-type(2)']
+  ],
+  'hub-detail-logs': [
+    ['1', 'Download log', '.log-table tbody tr:nth-child(1) .btn-outline'], ['2', 'Delete log', '.log-table tbody tr:nth-child(1) .btn-danger'], ['3', 'Get Log', '.detail-card:has(.log-table) .card-header .btn-primary'], ['4', 'Export Messages', '.detail-card:has(> button.btn-primary) > button.btn-primary'], ['5', 'Back to List', 'button.btn.btn-outline:text-is("Back to List")']
+  ]
+};
+for (const [id, controls] of Object.entries(requiredControlContracts)) {
+  const entry = screenshotManifest.find((candidate) => candidate.id === id);
+  if (!entry || JSON.stringify(entry.controls.map((control) => [control.number, control.name, control.selector])) !== JSON.stringify(controls)) {
+    addError(`${id}: controls must use the required numbered selector contract`);
+  }
 }
 
 const chapters = walk(join(root, 'en'), '.md')
@@ -83,6 +96,10 @@ for (const chapter of chapters) {
     addError(`missing Chinese chapter: ${chapter}`);
     continue;
   }
+  if (!existsSync(trPath)) {
+    addError(`missing Turkish chapter: ${chapter}`);
+    continue;
+  }
   const entries = screenshotManifest.filter((entry) => entry.chapter === chapter);
   if (!entries.length) addError(`${chapter}: no manifest entry`);
   const enText = readFileSync(enPath, 'utf8');
@@ -90,6 +107,7 @@ for (const chapter of chapters) {
   const trText = readFileSync(trPath, 'utf8');
   assertSafeText(enPath, enText);
   assertSafeText(zhPath, zhText);
+  assertSafeText(trPath, trText);
   const enImages = new Set(imagePaths(enText));
   const zhImages = new Set(imagePaths(zhText));
   const trImages = new Set(imagePaths(trText));
@@ -100,7 +118,7 @@ for (const chapter of chapters) {
     const file = entry.file;
     manifestFiles.add(file);
     if (!existsSync(join(publicRoot, file))) addError(`${entry.id}: missing ${file}`);
-    if (!enImages.has(file) || !zhImages.has(file)) addError(`${entry.id}: ${file} must be referenced by both chapter languages`);
+    if (!enImages.has(file) || !zhImages.has(file) || !trImages.has(file)) addError(`${entry.id}: ${file} must be referenced by all chapter languages`);
     if (!entry.chapter || entry.chapter.includes('*') || entry.route.includes('*')) addError(`${entry.id}: wildcard chapter or route`);
     if (entry.appCommit === 'working-tree') addError(`${entry.id}: working-tree is not a commit`);
     if (!entry.controls.length) addError(`${entry.id}: no controls`);
@@ -112,8 +130,9 @@ for (const chapter of chapters) {
     }
     const enNumbers = imageTableNumbers(enText, file);
     const zhNumbers = imageTableNumbers(zhText, file);
+    const trNumbers = imageTableNumbers(trText, file);
     const expected = [...numbers].sort();
-    if (JSON.stringify([...new Set(enNumbers)].sort()) !== JSON.stringify(expected) || JSON.stringify([...new Set(zhNumbers)].sort()) !== JSON.stringify(expected)) {
+    if (JSON.stringify([...new Set(enNumbers)].sort()) !== JSON.stringify(expected) || JSON.stringify([...new Set(zhNumbers)].sort()) !== JSON.stringify(expected) || JSON.stringify([...new Set(trNumbers)].sort()) !== JSON.stringify(expected)) {
       addError(`${entry.id}: table numbering must exactly match manifest controls`);
     }
   }
@@ -125,8 +144,10 @@ for (const chapter of chapters) {
 for (const appendix of walk(join(root, 'en/appendix'), '.md')) {
   const chapter = relative(join(root, 'en'), appendix).replace(/\.md$/, '');
   const zhPath = join(root, 'zh', `${chapter}.md`);
+  const trPath = join(root, 'tr', `${chapter}.md`);
   if (!existsSync(zhPath)) addError(`missing Chinese appendix: ${chapter}`);
-  for (const path of [appendix, zhPath]) {
+  if (!existsSync(trPath)) addError(`missing Turkish appendix: ${chapter}`);
+  for (const path of [appendix, zhPath, trPath]) {
     if (!existsSync(path)) continue;
     const text = readFileSync(path, 'utf8');
     assertSafeText(path, text);
@@ -143,7 +164,7 @@ for (const image of markdownFiles) {
 }
 for (const path of walk(join(publicRoot, 'images'), '.png')) {
   const image = `/${relative(publicRoot, path).replaceAll('\\', '/')}`;
-  if (!manifestFiles.has(image) || !markdownFiles.has(image)) addError(`orphan PNG: ${image}`);
+  if ((!manifestFiles.has(image) || !markdownFiles.has(image)) && !exemptAppendixImages.has(image)) addError(`orphan PNG: ${image}`);
 }
 
 if (errors.length) {

@@ -4,7 +4,7 @@
 
 | No. | Control | Prerequisite, action, result, permission |
 |---|---|---|
-| 1 | Language | Select it to switch the display language. A failed profile update keeps the previous language. |
+| 1 | Language | Select Chinese or English to switch the display language immediately. If it cannot be synchronized, the selected language remains in use. Turkish is available for this manual only. |
 | 2 | Notification bell and unread count | Visible only when the role can access notifications; selects the Notifications page and shows its unread count. |
 | 3 | Avatar | Select it to open Settings for the signed-in account. |
 | 4 | Sidebar | Shows only pages you can use. Typing another page address does not give access; if you do not have access, RBLINK DESKTOP returns you to a page you can use. |

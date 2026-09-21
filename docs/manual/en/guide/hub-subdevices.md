@@ -2,6 +2,8 @@
 
 Open **Sub-devices** from the selected Hub. The examples show sample devices and rooms. Confirm the target before deleting, editing, or adding a device.
 
+An **IPC Camera** is shown with a camera icon. If a device does not report a battery value, its Battery field displays `-`; this is missing information, not a charge level.
+
 ![Sub-device list: 1 type, 2 model, 3 status, 4 serial search, 5 detail, 6 edit, 7 delete](/images/hubs/hub-subdevices-list.png){.manual-shot}
 
 | No. | Control | Prerequisite and action | Result, failure, permission, or risk |

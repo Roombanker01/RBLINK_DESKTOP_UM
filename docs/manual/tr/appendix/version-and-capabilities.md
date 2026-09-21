@@ -1,6 +1,6 @@
 # Sürüm ve özellikler
 
-Bu kılavuz RBLINK DESKTOP v1.0.0 için geçerlidir ve 2026-08-31 tarihinde güncellenmiştir.
+Bu kılavuz **RBLINK DESKTOP v0.1.3** için geçerlidir ve 2026-09-21 tarihinde güncellenmiştir. Kılavuz revizyonu ile uygulama sürümü ayrıdır: bu sayfa uygulama sürümünü belirtir; kılavuz metin veya ekran görüntüsü için bağımsız güncellenebilir.
 
 Saatler mevcut bilgisayarın yerel saat diliminde gösterilir.
 
